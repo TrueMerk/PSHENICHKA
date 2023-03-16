@@ -11,10 +11,14 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Grows
         [SerializeField] private AnimationCurve _zCurve;
         
         private Transform _target;
+        private Bunch.Bunch _bunch;
+        private BlockOfGrow _wheat;
+        private bool _sell;
         
-        private IEnumerator MoveToTarget()
+        private IEnumerator MoveToTarget(bool sell)
         {
             var time = 0f;
+            var d = _animationTime - Time.deltaTime;
             
             var initX = transform.position.x;
             var initY = transform.position.y;
@@ -24,7 +28,7 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Grows
             var yDiff = _target.position.y - transform.position.y;
             var zDiff = _target.position.z - transform.position.z;
             
-            while (time < _animationTime)
+            while (time <_animationTime)
             {
                 var t = time / _animationTime;
                 
@@ -33,16 +37,28 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Grows
                 var z = zDiff * _zCurve.Evaluate(t) + initZ;
 
                 transform.position = new Vector3(x, y, z);
+               
                 yield return null;
                 time += Time.deltaTime;
             }
+
+            if (!sell)
+            {
+                _bunch.SetPosForBlocks(_wheat);
+            }
+            else
+            {
+                _wheat.gameObject.SetActive(false);
+            }
+            
         }
         
-        public void SetTarget(Transform target)
+        public void SetTarget(Transform target, Bunch.Bunch bunch, BlockOfGrow wheat,bool sell)
         {
             _target = target;
-            
-            StartCoroutine(MoveToTarget());
+            _bunch = bunch;
+            _wheat = wheat;
+            StartCoroutine(MoveToTarget(sell));
         }
     }
 }

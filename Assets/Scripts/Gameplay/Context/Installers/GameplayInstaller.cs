@@ -8,7 +8,7 @@ namespace SarrrGames.GoldenRush.Gameplay.Context.Installers
 {
     public class GameplayInstaller : MonoInstaller
     {
-        [FormerlySerializedAs("_player")] [SerializeField] private PlayerUnit playerUnit;
+         [SerializeField] private PlayerUnit playerUnit;
         
         public override void InstallBindings()
         {

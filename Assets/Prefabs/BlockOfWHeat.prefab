@@ -110,6 +110,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _blockMover: {fileID: -4372387098344120622}
+  _meshRenderer: {fileID: 3098168292524068928}
+  _colider: {fileID: 995429034392303218}
+  countMoneyUnBlock: 0
 --- !u!114 &-4372387098344120622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32eb50136e7f4b4479c0955235e1f8d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animationTime: 0.1
+  _animationTime: 0.33
   _xCurve:
     serializedVersion: 2
     m_Curve:
@@ -153,20 +156,29 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 8.877807
+      outSlope: 8.877807
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.26572657
+      value: 2.359069
+      inSlope: 3.5134516
+      outSlope: 3.5134516
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 1
-      outSlope: 1
+      inSlope: -1.8509033
+      outSlope: -1.8509033
       tangentMode: 34
       weightedMode: 0
-      inWeight: 0
+      inWeight: 0.33333334
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2

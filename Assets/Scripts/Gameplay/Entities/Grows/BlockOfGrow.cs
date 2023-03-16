@@ -8,23 +8,20 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Grows
     public class BlockOfGrow : MonoBehaviour
     {
          [SerializeField] private BlockMover _blockMover;
+         [SerializeField] private MeshRenderer _meshRenderer;
+         [SerializeField] private BoxCollider _colider;
          
-
-         public Action BlockDeadAction;
          private TokenProgressModel _token;
+         public Action BlockDeadAction;
+         public int countMoneyUnBlock;
 
-
+         
          [Inject]
          public void Construct(TokenProgressModel token)
          {
              _token = token;
          }
-        
-        public void SetShotDestination(Transform shotDestination)
-        {
-            _blockMover.SetTarget(shotDestination);
-        }
-
+         
         private void OnTriggerEnter(Collider other)
         {
             var ambar = other.GetComponent<Ambar>();
@@ -35,12 +32,34 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Grows
             }
         }
 
-        private void OnBlockLifeEnd()
+        private void OnDisable()
         {
-            gameObject.SetActive(false);
+            _colider.enabled = true;
+        }
+
+        public void OnBlockLifeEnd()
+        {
             gameObject.transform.SetParent(null);
             BlockDeadAction?.Invoke();
             _token.Soft.SetValue(_token.Soft.GetValue()+15);
         }
+        
+        public void SetShotDestination(Transform shotDestination, Bunch.Bunch bunch, bool sell)
+        {
+            _blockMover.SetTarget(shotDestination,bunch,this,sell);
+        }
+
+        public void DisableObjectForPool()
+        {
+            _meshRenderer.enabled = false;
+            _colider.enabled = false;
+        }
+
+        public void EnableObjectForPool()
+        {
+            _meshRenderer.enabled = true;
+        }
+        
+        
     }
 }

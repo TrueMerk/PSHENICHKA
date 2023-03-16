@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using SarrrGames.GoldenRush.Gameplay.Entities.Bunch;
 using UnityEngine;
 
 namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
@@ -10,8 +12,12 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
         [SerializeField] private string _idleAnimationName = "Angry";
         [SerializeField] private string _attackAnimation = "Harvesting";
         [SerializeField] private bool _hasAttackAnimation;
+        [SerializeField] private BunchAnimator _bunchAnimator;
         
         private AnimatorState _animatorState = AnimatorState.Idle;
+        
+        public Action MovingAction;
+        public bool IsRunnning;
     
         public void PlayAttackAnimation()
         {
@@ -29,6 +35,8 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
             {
                 return;
             }
+
+            _bunchAnimator.StopAnimation();
             _animator.Play(_idleAnimationName);
             _animatorState = AnimatorState.Idle;
         }
@@ -39,9 +47,11 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
             {
                 return;
             }
-            
+            _bunchAnimator.enabled = true;
+            _bunchAnimator.AnimateBench();
             _animator.Play(_runningAnimationName);
             _animatorState = AnimatorState.Running;
+            //MovingAction?.Invoke();
         }
    
         private enum AnimatorState
