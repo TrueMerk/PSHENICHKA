@@ -26,7 +26,7 @@ namespace SarrrGames.GoldenRush
         {
             _max = false;
             _growth = 0;
-            gameObject.transform.localScale = new Vector3(1, 1, 1);
+            gameObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             StopAllCoroutines();
             StartCoroutine(GroveRoutine());
         }

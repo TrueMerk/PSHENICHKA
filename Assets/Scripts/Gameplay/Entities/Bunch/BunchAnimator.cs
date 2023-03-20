@@ -10,7 +10,7 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Bunch
     public class BunchAnimator : MonoBehaviour
     {
         private PlayerUnit _player;
-        private PlayerAnimationController _playerAnimation;
+        private AnimationComponent _animation;
         private bool _isAnimated = false;
         public int loop = 0;
 
@@ -18,7 +18,7 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Bunch
         public void Construct(PlayerUnit player)
         {
             _player = player;
-            _playerAnimation = _player.gameObject.GetComponent<PlayerAnimationController>();
+            _animation = _player.gameObject.GetComponent<AnimationComponent>();
         }
 
       
@@ -32,13 +32,13 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Bunch
             {
                 loop = -1;
                 DOTween.Sequence()
-                    .Append(transform.DORotate(new Vector3(0, 0, 8), 0.5f))
-                    .AppendInterval(0.5f)
-                    .Append(transform.DORotate(new Vector3(0, 0, 0), 0.5f))
-                    .AppendInterval(0.5f)
-                    .Append(transform.DORotate(new Vector3(0, 0, -8), 0.5f))
-                    .AppendInterval(0.5f)
-                    .Append(transform.DORotate(new Vector3(0, 0, 0), 0.5f))
+                    .Append(transform.DORotate(new Vector3(0, 0, 8), 1))
+                    .AppendInterval(0.1f)
+                    .Append(transform.DORotate(new Vector3(0, 0, 0), 1))
+                    .AppendInterval(0.1f)
+                    .Append(transform.DORotate(new Vector3(0, 0, -8), 1))
+                    .AppendInterval(0.1f)
+                    .Append(transform.DORotate(new Vector3(0, 0, 0), 1))
                     .SetLoops(loop);
             }
             

@@ -1,4 +1,3 @@
-using SarrrGames.GoldenRush.Gameplay.Entities.Grows;
 using UnityEngine;
 
 namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
@@ -9,11 +8,11 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
         
         private void OnTriggerEnter(Collider other)
         {
-            var ambar = other.GetComponent<Ambar>();
+            var ambar = other.GetComponent<Ambar.Ambar>();
         
             if (ambar != null && _bunch.Blocks.Count>0)
             {
-                _bunch.SellBlocs(other.transform);
+                _bunch.SellBlocs(other.transform, ambar);
             }
         }
 

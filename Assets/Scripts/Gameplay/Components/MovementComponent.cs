@@ -7,9 +7,9 @@ namespace SarrrGames.GoldenRush.Gameplay.Components
         [SerializeField] private float _movementSpeed = 3;
         [SerializeField] private int _rotationSpeed = 50;
     
-        public void Move(float horizontal, float vertical)
+        public void Move(Vector3 direction)
         {
-            transform.Translate(horizontal/100*_movementSpeed,0,vertical/100*_movementSpeed);
+            transform.Translate(Vector3.forward *_movementSpeed);
         }
 
         public void Rotate(Quaternion target)

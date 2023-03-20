@@ -10,18 +10,14 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
         [SerializeField] private Transform _playerTransform;
         [SerializeField] private Bunch.Bunch _bunch;
 
-        private int count = 0;
-        public Action WheatInBox;
         
         private void OnTriggerEnter(Collider other)
         {
             var wheat = other.GetComponent<BlockOfGrow>();
-            if (wheat != null && _bunch.Blocks.Count<39)
+            if (wheat != null && _bunch.Blocks.Count<40)
             {
-                //wheat.DisableObjectForPool();
+                _bunch.Blocks.Add(wheat);
                 wheat.SetShotDestination(_bunch.transform, _bunch,false);
-                count++;
-                
             }
         }
 

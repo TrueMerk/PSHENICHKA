@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using SarrrGames.GoldenRush.Gameplay.Entities.Grows;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ namespace SarrrGames.GoldenRush
     [SerializeField] private Grower _grower;
     [SerializeField] private Collider _collider;
     [SerializeField] private BlocksPool _block;
-
+    
     public Action ZeroHealth;
 
     private void Start()
@@ -40,6 +41,7 @@ namespace SarrrGames.GoldenRush
 
     public void HasBeenCut()
     {
+      
       _health--;
     }
 

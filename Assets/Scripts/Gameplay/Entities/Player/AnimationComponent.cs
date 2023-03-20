@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
 {
-    public class PlayerAnimationController : MonoBehaviour
+    public class AnimationComponent : MonoBehaviour
     {
         [SerializeField] private Animator _animator;
         [SerializeField] private string _runningAnimationName = "Running";
@@ -16,8 +16,7 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
         
         private AnimatorState _animatorState = AnimatorState.Idle;
         
-        public Action MovingAction;
-        public bool IsRunnning;
+        
     
         public void PlayAttackAnimation()
         {
@@ -47,11 +46,9 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
             {
                 return;
             }
-            _bunchAnimator.enabled = true;
             _bunchAnimator.AnimateBench();
             _animator.Play(_runningAnimationName);
             _animatorState = AnimatorState.Running;
-            //MovingAction?.Invoke();
         }
    
         private enum AnimatorState

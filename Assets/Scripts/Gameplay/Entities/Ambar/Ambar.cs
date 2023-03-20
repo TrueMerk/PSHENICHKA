@@ -1,21 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
+using SarrrGames.GoldenRush.Gameplay.Entities.Token;
 using UnityEngine;
 
-namespace SarrrGames.GoldenRush
+namespace SarrrGames.GoldenRush.Gameplay.Entities.Ambar
 {
     public class Ambar : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
+        [SerializeField] private TokenPool _tokenPool;
 
-        // Update is called once per frame
-        void Update()
+        public void CreateToken()
         {
-        
+            _tokenPool.CreateToken(transform);
         }
     }
 }

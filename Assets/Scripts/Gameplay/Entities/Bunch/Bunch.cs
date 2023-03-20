@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using SarrrGames.GoldenRush.Gameplay.Entities.Grows;
 using UnityEngine;
@@ -13,41 +14,57 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Bunch
          
         public void SetPosForBlocks(BlockOfGrow wheat)
         {
-            Blocks.Add(wheat);
-            wheat.transform.SetParent(_startPos);
-            wheat.DisableObjectForPool();
-            if (Blocks.Count<10)
-            {
-                _blocksTower[0].gameObject.SetActive(true);
-            }
+                wheat.transform.SetParent(_startPos);
+                wheat.DisableObjectForPool();
+                if (Blocks.Count<10)
+                {
+                    _blocksTower[0].gameObject.SetActive(true);
+                }
             
-            else if (Blocks.Count<20)
-            {
-                _blocksTower[1].gameObject.SetActive(true);
-            }
+                else if (Blocks.Count<20)
+                {
+                    _blocksTower[1].gameObject.SetActive(true);
+                }
             
-            else
-            {
-                _blocksTower[2].gameObject.SetActive(true);
-            }
+                else
+                {
+                    _blocksTower[2].gameObject.SetActive(true);
+                }
+                
         }
 
-        public void SellBlocs(Transform transform)
+        public void SellBlocs(Transform transform, Ambar.Ambar ambar)
         {
-            foreach (var BlockOfGrow in Blocks)
+            StartCoroutine(SellerCoroutine(ambar,Blocks.Count));
+            foreach (var block in Blocks)
             {
-                BlockOfGrow.EnableObjectForPool();
-                BlockOfGrow.SetShotDestination(transform, this,true);
-                BlockOfGrow.transform.SetParent(null);
-                BlockOfGrow.OnBlockLifeEnd();
+                block.EnableObjectForPool();
+                block.SetShotDestination(transform, this,true);
+                block.transform.SetParent(null);
+                block.OnBlockLifeEnd();
             }
             
             Blocks.Clear();
-            
+ 
             foreach (var block in _blocksTower)
             {
                 block.gameObject.SetActive(false); 
             }
+            
+        }
+
+        private IEnumerator SellerCoroutine(Ambar.Ambar ambar, int count)
+        {
+            while (true)
+            {
+                for (int i = 0; i < count ; i++)
+                {
+                    ambar.CreateToken();
+                    yield return new WaitForSeconds(0.5f);
+                }
+                break;
+            }
+            
         }
     }
 }

@@ -1,4 +1,4 @@
-using Microsoft.Unity.VisualStudio.Editor;
+using DG.Tweening;
 using SarrrGames.GoldenRush.Gameplay.ObjectsPool;
 using UnityEngine;
 using Zenject;
@@ -12,8 +12,7 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Token
         [SerializeField] private GoldenToken _tokenPrefab;
         [SerializeField] private Transform _tokenSpawner;
         
-       
-    
+        
         private Pool _pool;
 
         [Inject]
@@ -28,11 +27,13 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Token
             _pool.CreatePool<GoldenToken>(_tokenPrefab.gameObject,_poolCount,transform);
         }
     
-        public void CreateToken(Transform tokenPoint)
+        public void CreateToken(Transform tokenSpawner)
         {
             var token = _pool.GetFreeElement<GoldenToken>();
-            //var o = token.gameObject;
-           // o.transform.position = _tokenSpawner.position;
+            token.StartAnimation();
+            var o = token.gameObject;
+            o.transform.position = _tokenSpawner.position;
+            
             //o.transform.rotation = _tokenSpawner.rotation;
         }
     }

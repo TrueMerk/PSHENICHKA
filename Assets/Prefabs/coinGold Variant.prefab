@@ -59,6 +59,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: coinGold Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dd9617c590e6870419b18fbb4236cb63, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd9617c590e6870419b18fbb4236cb63, type: 3}
 --- !u!1 &1950640267579354217 stripped
@@ -66,18 +70,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: dd9617c590e6870419b18fbb4236cb63, type: 3}
   m_PrefabInstance: {fileID: 1716849116831469880}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8135760895825760215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950640267579354217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e437ca132e624347a967d86cd0fe1a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-4638563709623461384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,3 +82,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcbd41359926f284b8953e7f97e62417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8135760895825760215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950640267579354217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e437ca132e624347a967d86cd0fe1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _counterTransform: {x: 0, y: 0, z: 0}
+  _startTransform: {x: 0, y: 0, z: 0}

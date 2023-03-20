@@ -8,7 +8,7 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Player
     public class PlayerMover : MonoBehaviour
     {
         [SerializeField] private float _speed;
-        [SerializeField] private PlayerAnimationController _animator;
+        [SerializeField] private AnimationComponent _animator;
         [SerializeField] private BunchAnimator _bunchAnimator;
 
         private bool isAttacking = false;

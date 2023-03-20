@@ -10,6 +10,8 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Grows
          [SerializeField] private BlockMover _blockMover;
          [SerializeField] private MeshRenderer _meshRenderer;
          [SerializeField] private BoxCollider _colider;
+         private Bunch.Bunch _bunch;
+         
          
          private TokenProgressModel _token;
          public Action BlockDeadAction;
@@ -24,28 +26,31 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Grows
          
         private void OnTriggerEnter(Collider other)
         {
-            var ambar = other.GetComponent<Ambar>();
+            var ambar = other.GetComponent<Ambar.Ambar>();
             if (ambar != null)
             {
                 OnBlockLifeEnd();
-                ambar.GetComponent<TokenPool>().CreateToken(ambar.transform);
             }
         }
 
         private void OnDisable()
         {
             _colider.enabled = true;
+            if (_bunch != null)
+                _bunch.Blocks.Remove(this);
         }
 
         public void OnBlockLifeEnd()
         {
             gameObject.transform.SetParent(null);
             BlockDeadAction?.Invoke();
-            _token.Soft.SetValue(_token.Soft.GetValue()+15);
+            //gameObject.SetActive(false);
+
         }
         
         public void SetShotDestination(Transform shotDestination, Bunch.Bunch bunch, bool sell)
         {
+            _bunch = bunch;
             _blockMover.SetTarget(shotDestination,bunch,this,sell);
         }
 
@@ -53,6 +58,7 @@ namespace SarrrGames.GoldenRush.Gameplay.Entities.Grows
         {
             _meshRenderer.enabled = false;
             _colider.enabled = false;
+            _token.BloxCount.SetValue(_token.BloxCount.GetValue()+1);
         }
 
         public void EnableObjectForPool()
